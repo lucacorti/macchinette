@@ -76,7 +76,7 @@ defmodule Macchinette.Caffe do
     :keep_state_and_data
   end
 
-  def handle_event({:call, from}, {:add_credit, coin}, :idle, data),
+  def handle_event({:call, from}, {:add_credit, coin}, :idle, %__MODULE__{} = data),
     do: {:keep_state, %{data | credit: data.credit + coin}, {:reply, from, :ok}}
 
   def handle_event({:call, from}, {:add_credit, _coin}, _state, _data),
